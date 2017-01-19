@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/examples.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fullPage.min.js"></script>
+    <script type="text/javascript" src="/js/examples.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff', 'ffffff',
+                    '#ffffff'
+                ],
+                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary',
+                    'dataset', 'data', 'credit'
+                ],
+                menu: '#menu',
+            });
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="data.js"></script>
+    <script src="radarchart.js"></script>
+</head>
+
+<body>
+    <!--<ul id="menu">-->
+    <!--<li data-menuanchor="insight-into-you" class="active"><a class="insight" href="#insight-into-you">Insight into you</a></li>-->
+    <!--</ul>-->
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <div class="intro">
+                <h1 class="serif">Who are you? Genetically speaking</h1>
+                <p class="authors serif">By Theis Hjalte Thorn Jakobsen and Christian Grüner JAN 18, 2017</p>
+                <p class="serif" style="margin-top: 10px;">We are all unqiue in some way. Facial features, emotions, way of thinking, etc. are all features that seperately
+                    or together define us as being unique. These differences often seem significant enough for us to be able
+                    to classify and recognize other people. In truth, many of the things that makes us unique are woven into
+                    our DNA as single mutations that often makes the whole difference.</p>
+            </div>
+            <button class="arrowDown button-continue">Start the journey</button>
+        </div>
+        <div class="section " id="section1">
+            <!--           <div class="fingerprint">
+                        <i class="material-icons">fingerprint</i>
+                    </div>-->
+            <div class="intro" style="z-index: 99;">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <h1 class="serif">A lot of data to compare with</h1>
+                    <p class="serif">Your genetic fingerprint; So what do your genes tell about you, and how are you unique from everyone
+                        else? Mutations are really just differences in DNA that varies from most people, thus classification
+                        of mutations into phenotypical alterations is a natural way of visualising gene data.</p>
+                    <br><br>
+                    <p class="serif">
+                        <span class="large serif">288</span> people have been probed for <span class="large serif">240.000</span>                        mutations where approximately 100 SNPs have been linked to categories within <span class="large serif">fitness,
+                        nutrition and lifestyle.</span> Let's have a look of how these people compare to you.
+                    </p>
+                    <p class="serif">
+                        <!--    A weight-scoring algorithm has taken mutational data-points and given scores to different categories. The algorithm is based
+                        on reviewed scientific litterature and peoples genoptypes (mutations).-->
+                        <!-- <br> <br> By showing your data on a radar chart you essentially get your unique profile as a fingerprint,
+                        which is unique to you. Here it has been compared to an average person made from the accumulated
+                        data of 217 people. The data can be filtered into 4 areas, all, nutrition, fitness, and lifestyle.
+                        <br><br>
+                        <strong>Hover on a dot </strong>to see the outcome of the result.<br><br>
+                        <strong>Click a category </strong>to investigate the effect of your result.-->
+                    </p>
+                    <button class="arrowDown button-continue">Have a look</button>
+                </div>
+            </div>
+        </div>
+        <div class="section " id="section2">
+            <div class="intro">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <h1 class="serif">Your genetic fingerprint</h1>
+                    <p class="serif" style="margin-bottom: 60px;">
+                        By showing your data on a radar chart you essentially get your unique profile as a fingerprint, which is unique to you. Here
+                        it has been compared to an average person made from the accumulated data of 288 people. The data
+                        can be filtered into 4 areas, all, nutrition, fitness, and lifestyle.
+                        <!--                     A weight-scoring algorithm has taken mutational data-points and given scores to different categories. The algorithm is based
+                        on reviewed scientific litterature and peoples genoptypes (mutations).-->
+                        <!-- <br> <br> By showing your data on a radar chart you essentially get your unique profile as a fingerprint,
+                        which is unique to you. Here it has been compared to an average person made from the accumulated
+                        data of 217 people. The data can be filtered into 4 areas, all, nutrition, fitness, and lifestyle.
+                        <br><br>
+                        <strong>Hover on a dot </strong>to see the outcome of the result.<br><br>
+                        <strong>Click a category </strong>to investigate the effect of your result.-->
+                    </p>
+                    <div class="text-extras" style="display: inline-block;">
+                        <p class="header primary-color">The radar chart
+                        </p>
+                        <p class="body">Each category have been given a percentage score based their phenotypical penetrance. Hover over
+                            a point to see it's outcome.
+                        </p>
+                        <br><br>
+                        <p class="header primary-color">Filter the data
+                        </p>
+                        <p class="body">Each category can be classified as being either a fitness, nutrition, or lifestyle category.
+                        </p>
+                        <div id="userSelection" style="margin-left: 80px;"></div>
+                    </div>
+                    <div style="display: inline-block; vertical-align:top;">
+                        <div id="chart"></div>
+                    </div>
+                    <p class="serif">Click a category to continue</p>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="intro">
+                <div class="text-center">
+                    <h2 id="summaryHeader2" class="serif">Go back and pick a category</h2>
+                    <br>
+                    <p class="resultHeader" style="font-size: 20px;">
+                        <span></span>
+                    </p>
+                    <br>
+                </div>
+                <div id="imageContainer">
+                </div>
+                <button class="arrowDown button-continue read-on">Read on</button>
+            </div>
+        </div>
+        <div class="section" id="section4">
+            <div class="intro">
+                <div class="col-md-8">
+                    <h3 class="serif" id="summaryHeader">An insight into you</h3>
+                    <p id="summary"></p>
+                </div>
+                <div class="col-md-4">
+                    <div id="barchart"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!--<h3>An insight into you</h3>-->
+                        <p id="summary"></p>
+                        <div id="barchart"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">Continue</button>
+        </div>
+        <div class="section" id="section5">
+            <div class="intro">
+                <h1 class="serif">Histogram: What did other people get?</h1>
+                <p class="body">Hover bins to see result of histogram.
+                </p>
+                <div id="histogram"></div>
+            </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">Go to data explanation</button>
+        </div>
+        <div class="section" id="section6">
+            <div class="intro">
+                <h2 class="serif">Data</h2>
+                <p class="serif">The data was produced from a library of 288 people with 240.000 mutations each. The data was filtered and
+                    anonymized before being used in this visualization.</p>
+                <h3 class="serif">Scoring algorithm</h3>
+                <p class="serif">
+                    The scoring for each category is based on a weight-scoring algorithm. Litterature on genotypes that are linked to specific
+                    categories are reviewed and scores for different genotype variants are applied. Some categories are build
+                    from multiple genotypes and some are binary, meaning that the genotype works as a on/off switch for a
+                    specific phenotype. The sum of contribution for each genotype is used as a max score for the given category.
+                    When a test is being done on a person the genotypes are linked to the scores and a score is applied.
+                    This is then compared with the max score and thus a percentage score can be calculated. The outcome of
+                    a category is then set as bounds in percentage, e.g. score
+                    <=2 5 gives low, score <=5 0 gives medium low, score <=7 5 medium high, etc. Each category is also applied a confidence score
+                        (not shown here). </p>
+            </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">Credits</button>
+        </div>
+        <div class="section" id="section7">
+            <div class="intro">
+                <h3>Credits</h3>
+                <p>Radar chart: <a href="http://bl.ocks.org/nbremer/6506614"> http://bl.ocks.org/nbremer/6506614</a></p>
+                <p>Bar chart: <a href="https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4">https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4</a> </p>
+                <p>Histogram: <a href="http://bl.ocks.org/juan-cb/ac731adaeadd3e855d26">http://bl.ocks.org/juan-cb/ac731adaeadd3e855d26</a></p>
+            </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                },
+                {
+                    src: 'plugin/markdown/markdown.js'
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+            ]
+        });
+    </script>
+    <script src="barchart.js"></script>
+    <script src="userSelection.js"></script>
+    <script src="histogram.js"></script>
+    <script src="app.js"></script>
+    <script>
+        $('.arrowDown').click(function () {
+            $.fn.fullpage.moveSectionDown();
+        });
+        $('.selectCat').click(function () {
+            $.fn.fullpage.moveTo('insight-into-you')
+        });
+    </script>
+</body>
+
+</html>
